@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 
 import { OverLayComponent } from '@shared/components/over-lay/over-lay.component';
+
+import { CustomElementState } from '@shared/models/custom-element.state';
+
+import * as customElementActions from '@store/actions/custom-element.action';
+
+import { getDisplayWindow } from '@store/selectors/selectors';
 
 @Component({
   selector: 'app-custom-ele',
@@ -9,13 +16,21 @@ import { OverLayComponent } from '@shared/components/over-lay/over-lay.component
   styleUrls: ['./custom-ele.component.scss']
 })
 export class CustomEleComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
+  isClicked = false;
+  constructor(
+    private dialog: MatDialog,
+    private store: Store<CustomElementState>
+  ) {}
 
   ngOnInit(): void {}
   onToggle() {
+    this.store.dispatch(
+      customElementActions.loadMessage({
+        payload: 'I am successfully Clicked through ngrx dispatch method'
+      })
+    );
     const dialogRef = this.dialog.open(OverLayComponent, {
-      width: '25%',
-      data: { message: 'I am successfully Clicked' }
+      width: '25%'
     });
   }
 }
