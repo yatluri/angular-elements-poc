@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { CustomEleComponent } from './custom-ele/custom-ele.component';
 
-import { Reducer } from '@store/reducers/reducer';
+import { reducerMap, metaReducers } from '@store/reducers/reducer';
 
 @NgModule({
   declarations: [CustomEleComponent],
@@ -15,7 +15,13 @@ import { Reducer } from '@store/reducers/reducer';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule.forRoot(),
-    StoreModule.forRoot({ customElementState: Reducer.customReducer })
+    StoreModule.forRoot(reducerMap, {
+      metaReducers,
+      runtimeChecks: {
+        strictActionImmutability: true,
+        strictStateImmutability: true
+      }
+    })
   ],
   entryComponents: [CustomEleComponent],
   providers: []

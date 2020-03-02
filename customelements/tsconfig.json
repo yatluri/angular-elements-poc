@@ -15,7 +15,8 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@shared/*": ["src/app/shared/*"],
-      "@store/*": ["src/app/store/*"]
+      "@store/*": ["src/app/store/*"],
+      "@environment/*": ["src/environments/*"]
     }
   },
   "angularCompilerOptions": {
