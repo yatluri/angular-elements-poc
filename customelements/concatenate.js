@@ -11,9 +11,9 @@ const concat = require('concat');
     './dist/customElements/polyfills-es5.js',
     './dist/customElements/main-es5.js'
   ];
-  await fs.ensureDir('elements');
-  await concat(files_es_2015, 'elements/es_2015.js');
-  await concat(files_es_5, 'elements/es_5.js');
-  await fs.copy('./dist/customElements/styles.css', 'elements/styles.css');
-  await fs.copy('./dist/customElements/scripts.js', 'elements/scripts.js');
+  await fs.ensureDir('../custom-elements-testing/elements');
+  await concat(files_es_2015, '../custom-elements-testing/elements/es_2015.js');
+  await concat(files_es_5, '../custom-elements-testing/elements/es_5.js');
+  await fs.copy('./dist/customElements/styles.css', '../custom-elements-testing/elements/styles.css');
+  await fs.copy('./dist/customElements/scripts.js', '../custom-elements-testing/elements/scripts.js');
 })();
