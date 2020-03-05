@@ -15,3 +15,8 @@ export const getDisplayMessage = createSelector(
   getCustomElementState,
   state => state.dialogMessage
 );
+
+export const getLoginInfo = createSelector(
+  getCustomElementState,
+  state => state.loggedUserModel
+);

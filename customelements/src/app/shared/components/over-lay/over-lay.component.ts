@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { getDisplayMessage } from '@store/selectors/selectors';
 
-import { CustomElementState } from '@shared/models/custom-element.state';
+import { CustomElementState } from '@shared/models/index';
 @Component({
   selector: 'app-over-lay',
   templateUrl: './over-lay.component.html',

@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // angular material components
@@ -15,11 +16,13 @@ import { OverLayComponent } from './components/over-lay/over-lay.component';
     MatButtonModule,
     MatDialogModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   exports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,

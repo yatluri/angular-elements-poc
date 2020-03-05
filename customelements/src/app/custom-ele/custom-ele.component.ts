@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { OverLayComponent } from '@shared/components/over-lay/over-lay.component';
 
-import { CustomElementState } from '@shared/models/custom-element.state';
+import { CustomElementState, initialState } from '@shared/models/index';
 
 import * as customElementActions from '@store/actions/custom-element.action';
 
@@ -20,7 +20,13 @@ export class CustomEleComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private store: Store<CustomElementState>
-  ) {}
+  ) {
+    this.store.dispatch(
+      customElementActions.loadLoginInfo({
+        payload: initialState.loginModel
+      })
+    );
+  }
 
   ngOnInit(): void {}
   onToggle() {

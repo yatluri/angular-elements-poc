@@ -1,8 +1,12 @@
 import { createReducer, on, ActionReducerMap, MetaReducer } from '@ngrx/store';
-import { initialState, customActionTypes } from '@shared/models/default';
+import {
+  initialState,
+  customActionTypes,
+  CustomElementState
+} from '@shared/models/index';
 
 import * as customElementActions from '../actions/custom-element.action';
-import { CustomElementState } from '@shared/models/custom-element.state';
+
 import { environment } from '@environment/environment';
 
 export class Reducer {
@@ -19,6 +23,30 @@ export class Reducer {
       return {
         ...state,
         dialogMessage: action.payload
+      };
+    }),
+    on(customElementActions.loadProductCollections, (state, action) => {
+      return {
+        ...state,
+        page: action.payload
+      };
+    }),
+    on(customElementActions.loadProductCollectionSuccess, (state, action) => {
+      return {
+        ...state,
+        productCollections: action.payload
+      };
+    }),
+    on(customElementActions.loadLoginInfo, (state, action) => {
+      return {
+        ...state,
+        loginModel: action.payload
+      };
+    }),
+    on(customElementActions.loginSuccess, (state, action) => {
+      return {
+        ...state,
+        loggedUserModel: action.payload
       };
     })
   );
