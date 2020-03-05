@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 
-import { getDisplayMessage } from '@store/selectors/selectors';
+import { getProductCollections } from '@store/selectors/selectors';
 
 import { CustomElementState } from '@shared/models/index';
 @Component({
@@ -11,7 +12,14 @@ import { CustomElementState } from '@shared/models/index';
   styleUrls: ['./over-lay.component.scss']
 })
 export class OverLayComponent implements OnInit {
-  m$ = this.store.select(getDisplayMessage);
+  productCollections$ = this.store.select(getProductCollections).pipe(
+    map(response => {
+      if (response) {
+        console.log(response);
+        return response;
+      }
+    })
+  );
   constructor(
     private dialogRef: MatDialogRef<OverLayComponent>,
     private store: Store<CustomElementState>

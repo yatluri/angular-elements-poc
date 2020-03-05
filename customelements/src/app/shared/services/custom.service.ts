@@ -18,7 +18,6 @@ export class CustomService {
   constructor(private http: HttpClient) {}
 
   getProductCollection(params: Page): Observable<Array<ProductCollection>> {
-    console.log(params);
     const page = new HttpParams()
       .set('q', params.query)
       .append('page', `${params.number}`)
@@ -26,7 +25,11 @@ export class CustomService {
       .append('sort', `${params.sortColumn}`)
       .append('sortDir', `${params.sortDir}`)
       .append('filter', `${params.filter}`);
-    return;
+    const url =
+      'https://api.asicentral.com/v1/companies/601497/product_collections/search.json';
+    return this.http
+      .get<ProductCollection[]>(url, { params: page })
+      .pipe(map((response: ProductCollection[]) => response));
   }
   getLoginInfo(l: LoginModel): Observable<LoggedUserModel> {
     console.log(l);

@@ -20,3 +20,8 @@ export const getLoginInfo = createSelector(
   getCustomElementState,
   state => state.loggedUserModel
 );
+
+export const getProductCollections = createSelector(
+  getCustomElementState,
+  state => state.productCollections
+);

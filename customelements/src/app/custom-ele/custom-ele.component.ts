@@ -29,10 +29,11 @@ export class CustomEleComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  onToggle() {
+  onToggle($event: MouseEvent) {
+    $event.stopImmediatePropagation();
     this.store.dispatch(
-      customElementActions.loadMessage({
-        payload: 'I am successfully Clicked through ngrx dispatch method'
+      customElementActions.loadProductCollections({
+        payload: initialState.page
       })
     );
     const dialogRef = this.dialog.open(OverLayComponent, {

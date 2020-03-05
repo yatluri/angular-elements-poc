@@ -28,7 +28,8 @@ export const customActionTypes = {
   dialogMessage: '[Custom-Elements] dialog Message',
   displayWindow: '[Custom-Elements] display Window',
   loadProductCollections: '[Custom-Elements] load Product Collections',
-  loadProductCollectionSuccess: '[Custom-Elements] load Product Collections',
+  loadProductCollectionSuccess:
+    '[Custom-Elements] load Product Collection Success',
   loadLoginInfo: '[Custom-Elements] load login information',
   loginSuccess: '[Custom-Elements] Login Success'
 };
