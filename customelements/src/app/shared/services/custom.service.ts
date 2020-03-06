@@ -8,8 +8,10 @@ import {
   ProductCollection,
   Page,
   LoginModel,
-  LoggedUserModel
+  LoggedUserModel,
 } from '@shared/models/index';
+
+import * as m from '@shared/models/media-generator';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +31,12 @@ export class CustomService {
       'https://api.asicentral.com/v1/companies/601497/product_collections/search.json';
     return this.http
       .get<ProductCollection[]>(url, { params: page })
-      .pipe(map((response: ProductCollection[]) => response));
+      .pipe(map((response: ProductCollection[]) => {
+        return m.default.getMediaPath<ProductCollection>(response);
+      }));
   }
   getLoginInfo(l: LoginModel): Observable<LoggedUserModel> {
-    console.log(l);
+
     const formData = new FormData();
     formData.append('asi_number', l.asi_number.toString());
     formData.append('userName', l.userName);

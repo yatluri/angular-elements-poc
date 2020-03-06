@@ -4,7 +4,7 @@ export const initialState: CustomElementState = {
   displayWindow: false,
   page: {
     number: 0,
-    size: 50,
+    size: 100,
     query: '',
     sortColumn: 'Name',
     filter: '',

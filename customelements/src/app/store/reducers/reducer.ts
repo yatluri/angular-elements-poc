@@ -13,7 +13,7 @@ export class Reducer {
   public static customReducer = createReducer(
     initialState,
     on(customElementActions.loadDialog, (state, action) => {
-      console.log('action', action.payload);
+
       return {
         ...state,
         displayWindow: action.payload

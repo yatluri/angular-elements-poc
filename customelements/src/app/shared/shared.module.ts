@@ -3,18 +3,18 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// angular material components
+// material module
+import {MaterialModule} from '@material/material.module';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+
 import { OverLayComponent } from './components/over-lay/over-lay.component';
+import { ImagErrorHandlerDirective } from './directives/imag-error-handler.directive';
 
 @NgModule({
-  declarations: [OverLayComponent],
+  declarations: [OverLayComponent, ImagErrorHandlerDirective],
   imports: [
     CommonModule,
-    MatButtonModule,
-    MatDialogModule,
+    MaterialModule.forRoot(),
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule
@@ -24,9 +24,9 @@ import { OverLayComponent } from './components/over-lay/over-lay.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatDialogModule,
-    OverLayComponent
+    MaterialModule,
+    OverLayComponent,
+    ImagErrorHandlerDirective
   ]
 })
 export class SharedModule {

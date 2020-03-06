@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
 import { OverLayComponent } from '@shared/components/over-lay/over-lay.component';
@@ -16,7 +16,7 @@ import { getDisplayWindow } from '@store/selectors/selectors';
   styleUrls: ['./custom-ele.component.scss']
 })
 export class CustomEleComponent implements OnInit {
-  isClicked = false;
+
   constructor(
     private dialog: MatDialog,
     private store: Store<CustomElementState>
@@ -36,8 +36,10 @@ export class CustomEleComponent implements OnInit {
         payload: initialState.page
       })
     );
-    const dialogRef = this.dialog.open(OverLayComponent, {
-      width: '25%'
-    });
+    const config: MatDialogConfig = {
+      width: '100%',
+      disableClose: true
+    };
+    const dialogRef = this.dialog.open(OverLayComponent, config);
   }
 }
