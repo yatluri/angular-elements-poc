@@ -5,87 +5,83 @@
 </h1>
 <div mat-dialog-content>
   <ng-container *ngIf="vm.isLoader">
-    <mat-progress-spinner
-    class="example-margin"
-    [color]="vm.color"
-    [mode]="vm.mode"
-    [value]="vm.value">
-</mat-progress-spinner>
+    <div class="exampl-loading-shade">
+      <br />
+      <mat-progress-spinner class="example-margin" [color]="vm.color" [mode]="vm.mode" [value]="vm.value">
+      </mat-progress-spinner>
+      <br />
+    </div>
   </ng-container>
-  <ng-container *ngIf="!vm.isLoader">    
+  <ng-container *ngIf="!vm.isLoader">
     <form [formGroup]="pForm" novalidate>
       <mat-form-field>
         <mat-label>
           <mat-icon aria-hidden="false" aria-label="Example search icon">search</mat-icon>
           Search
         </mat-label>
-        <input matInput placeholder="Ex. My Collection" formControlName="pFilter"/>
+        <input matInput placeholder="Ex. My Collection" formControlName="pFilter" />
       </mat-form-field>
-      </form>  
-    </ng-container>
-  <div class="mat-elevation-z8">   
-  <ng-container *ngIf="productCollections$ | async as p">   
-    <div class="example-container">    
-    <div class="example-table-container">
-    <table mat-table [dataSource]="vm.dataSource" class="example-table"
-    matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
-    <!---Image Column-->
-    <ng-container matColumnDef="Image">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row">
-        <img [src]="row.MediaUrl" width="100" height="100" appImagErrorHandler />
-      </td>
-    </ng-container>
-    <!---Name Column---->
-    <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let row">{{row.Name}}</td>
-    </ng-container> 
-      <!-- Status Column -->
-      <ng-container matColumnDef="StatusCode">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let row">{{row.StatusCode}}</td>
-      </ng-container>
-       <!-- Description Column -->
-       <ng-container matColumnDef="Description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
-        <td mat-cell *matCellDef="let row">{{row.Description}}</td>
-      </ng-container>
-      <!--Website Count Column-->
-      <ng-container matColumnDef="WebsiteCount">
-        <th mat-header-cell *matHeaderCellDef>Website Count</th>
-        <td mat-cell *matCellDef="let row">{{row.WebsiteCount}}</td>
-      </ng-container>
-       <!-- Product Count Column -->
-       <ng-container matColumnDef="ProductCount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-          Product Count
-        </th>
-        <td mat-cell *matCellDef="let row">{{row.ProductCount}}</td>
-      </ng-container>
-
-     <!--Action Column-->
-     <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef>
-              <button
-              type="button"
-              class="mat-raised-button mat-primary"
-              color="primary"
-              mat-raised-button   
-              [disabled]="false"                 
-            >
-              Edit
-            </button>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="vm.displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: vm.displayedColumns;"></tr>    
-  </table>
-</div>
-</div>
+    </form>
   </ng-container>
-  <mat-paginator [length]="vm.dataSourceLength" [pageSizeOptions]="vm.pageSizeOptions" showFirstLastButtons></mat-paginator>
+  <div class="mat-elevation-z8">
+    <ng-container *ngIf="productCollections$ | async as p">
+      <div class="example-container">
+        <div class="example-table-container">
+          <table mat-table [dataSource]="vm.dataSource" class="example-table" matSort matSortActive="created"
+            matSortDisableClear matSortDirection="asc">
+            <!---Image Column-->
+            <ng-container matColumnDef="Image">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row">
+                <img [src]="row.MediaUrl" width="100" height="100" appImagErrorHandler />
+              </td>
+            </ng-container>
+            <!---Name Column---->
+            <ng-container matColumnDef="Name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let row">{{row.Name}}</td>
+            </ng-container>
+            <!-- Status Column -->
+            <ng-container matColumnDef="StatusCode">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let row">{{row.StatusCode}}</td>
+            </ng-container>
+            <!-- Description Column -->
+            <ng-container matColumnDef="Description">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let row">{{row.Description}}</td>
+            </ng-container>
+            <!--Website Count Column-->
+            <ng-container matColumnDef="WebsiteCount">
+              <th mat-header-cell *matHeaderCellDef>Website Count</th>
+              <td mat-cell *matCellDef="let row">{{row.WebsiteCount}}</td>
+            </ng-container>
+            <!-- Product Count Column -->
+            <ng-container matColumnDef="ProductCount">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Product Count
+              </th>
+              <td mat-cell *matCellDef="let row">{{row.ProductCount}}</td>
+            </ng-container>
+
+            <!--Action Column-->
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef>
+                <button type="button" class="mat-raised-button mat-primary" color="primary" mat-raised-button
+                  [disabled]="false">
+                  Edit
+                </button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="vm.displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: vm.displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </ng-container>
+    <mat-paginator [length]="vm.dataSourceLength" [pageSizeOptions]="vm.pageSizeOptions" showFirstLastButtons>
+    </mat-paginator>
   </div>
 </div>
 <div mat-dialog-actions>

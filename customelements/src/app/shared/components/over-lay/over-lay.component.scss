@@ -1,72 +1,86 @@
 /* Structure */
 .example-container {
-    position: relative;
-    min-height: 200px;
-  }
-  
-  .example-table-container {
-    position: relative;
-    max-height: 400px;
-    overflow: auto;
-  }
-  
-  table, mat-table {
-    width: 100%;
-  }
-  
-.close-btn {
-float:right;
+  position: relative;
+  min-height: 200px;
 }
 
-  
-  /* Column Widths */
-  .mat-column-number,
-  .mat-column-state {
-    max-width: 64px;
-  }
-  
-  .mat-column-created {
-    max-width: 124px;
-  }
-  :host .mat-dialog-content {
-      overflow: auto;
-      max-height: 650px;
-      padding: 20px;
-  }
-  :host .example-margin {
-    margin: 0 auto;    
-  }
-  :host th.mat-header-cell, td.mat-cell {
-      text-align: left !important;
-      padding: 24px !important;
-  }
-  :host mat-form-field {
-    width: 25%;
-  }
-  :host .mat-icon {
-    font-weight: bolder !important; 
-  }
-  :host .mat-mini-fab.mat-accent {
-    background-color: whitesmoke;
-  }
+.example-table-container {
+  position: relative;
+  max-height: 400px;
+  overflow: auto;
+}
 
+table,
+mat-table {
+  width: 100%;
+}
 
-  // styling scroll bar
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
+.close-btn {
+  float: right;
+}
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-  }
+/*.........Progress bar loading......*/
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
+}
+:host .mat-dialog-content {
+  overflow: auto;
+  max-height: 650px;
+  padding: 20px;
+}
+:host .example-margin {
+  margin: 0 auto;
+}
+:host th.mat-header-cell,
+td.mat-cell {
+  text-align: left !important;
+  padding: 24px !important;
+}
+:host mat-form-field {
+  width: 25%;
+}
+:host .mat-icon {
+  font-weight: bolder !important;
+}
+:host .mat-mini-fab.mat-accent {
+  background-color: whitesmoke;
+}
+
+// styling scroll bar
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
