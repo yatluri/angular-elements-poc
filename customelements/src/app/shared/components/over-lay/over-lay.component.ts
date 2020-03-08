@@ -1,18 +1,36 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, OnDestroy } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ViewChild,
+  OnDestroy
+} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDragHandle
+} from '@angular/cdk/drag-drop';
+import { MatTable } from '@angular/material/table';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { getProductCollections } from '@store/selectors/selectors';
 
-import { CustomElementState, OverlayViewModel, ProductCollection, Page, initialState} from '@shared/models/index';
+import {
+  CustomElementState,
+  OverlayViewModel,
+  ProductCollection,
+  Page,
+  initialState
+} from '@shared/models/index';
 
 import * as customElementsActions from '@store/actions/custom-element.action';
-
 
 @Component({
   selector: 'app-over-lay',
@@ -21,14 +39,17 @@ import * as customElementsActions from '@store/actions/custom-element.action';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverLayComponent implements OnInit, OnDestroy {
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('pCollectionTable') collectionTable: MatTable<ProductCollection>;
   vm = new OverlayViewModel();
   pForm: FormGroup = this.getPform();
   productCollections$ = this.store.select(getProductCollections).pipe(
-    map((response) => {
+    map(response => {
       if (response) {
         this.vm.isLoader = false;
-        this.vm.dataSource = new MatTableDataSource<ProductCollection>(response);
+        this.vm.dataSource = new MatTableDataSource<ProductCollection>(
+          response
+        );
         this.vm.dataSourceLength = response.length;
         this.setDataSourceAttributes();
         return response;
@@ -56,20 +77,33 @@ export class OverLayComponent implements OnInit, OnDestroy {
   }
   getPform(): FormGroup {
     return this.fb.group({
-      pFilter: ['' , []]
+      pFilter: ['', []]
     });
   }
   setDataSourceAttributes() {
     this.vm.dataSource.paginator = this.paginator;
   }
   customListeners() {
-    this.vm.subscriptions.push(this.pForm.get('pFilter').
-    valueChanges.pipe(debounceTime(800), distinctUntilChanged()).subscribe((value: string) => {
-      const p: Page = {...initialState.page};
-      p.query = value;
-      this.store.dispatch(customElementsActions.loadProductCollections({
-       payload: p
-     }));
-    }));
+    this.vm.subscriptions.push(
+      this.pForm
+        .get('pFilter')
+        .valueChanges.pipe(debounceTime(800), distinctUntilChanged())
+        .subscribe((value: string) => {
+          const p: Page = { ...initialState.page };
+          p.query = value;
+          this.store.dispatch(
+            customElementsActions.loadProductCollections({
+              payload: p
+            })
+          );
+        })
+    );
+  }
+  onTableDrop($event: CdkDragDrop<ProductCollection>) {
+    const prevIndex = this.vm.dataSource.data.findIndex(
+      (v, k) => v === $event.item.data
+    );
+    moveItemInArray(this.vm.dataSource.data, prevIndex, $event.currentIndex);
+    this.collectionTable.renderRows();
   }
 }
