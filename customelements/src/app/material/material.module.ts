@@ -37,7 +37,7 @@ import { MatIconModule } from '@angular/material/icon';
   ]
 })
 export class MaterialModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MaterialModule> {
     return {
       ngModule: MaterialModule,
       providers: []

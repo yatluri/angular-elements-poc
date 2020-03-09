@@ -4,8 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // material module
-import {MaterialModule} from '@material/material.module';
-
+import { MaterialModule } from '@material/material.module';
 
 import { OverLayComponent } from './components/over-lay/over-lay.component';
 import { ImagErrorHandlerDirective } from './directives/imag-error-handler.directive';
@@ -30,7 +29,7 @@ import { ImagErrorHandlerDirective } from './directives/imag-error-handler.direc
   ]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
       providers: []
