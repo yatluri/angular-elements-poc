@@ -28,15 +28,14 @@
       <div class="example-container">
         <div class="example-table-container">
           <table #pCollectionTable mat-table [dataSource]="vm.dataSource" class="example-table" matSort
-            matSortActive="created" matSortDisableClear matSortDirection="asc" cdkDropList
-            [cdkDropListData]="vm.dataSource" (cdkDropListDropped)="onTableDrop($event)">
-            <!--Bruger menu---->
+            matSortActive="created" matSortDisableClear matSortDirection="asc">
+            <!-- Bruger menu--
             <ng-container matColumnDef="menuIcon">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let row">
                 <mat-icon aria-hidden="false" aria-label="Example menu icon">menu</mat-icon>
               </td>
-            </ng-container>
+            </ng-container> -->
             <!---Image Column-->
             <ng-container matColumnDef="Image">
               <th mat-header-cell *matHeaderCellDef></th>
@@ -83,7 +82,7 @@
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="vm.displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: vm.displayedColumns;" cdkDrag [cdkDragData]="row"></tr>
+            <tr mat-row *matRowDef="let row; columns: vm.displayedColumns;"></tr>
           </table>
         </div>
       </div>

@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { ProductCollection, Page } from '@shared/models/index';
 export class OverlayViewModel {
   displayedColumns = [
-    'menuIcon',
     'Image',
     'Name',
     'StatusCode',
